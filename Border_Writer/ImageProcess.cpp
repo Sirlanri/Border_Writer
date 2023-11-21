@@ -1,6 +1,6 @@
 #include "ImageProcess.h"
 
-bool ReadImgs(vector<string>& ImgNames)
+bool GetImgs(vector<string>& ImgNames)
 {
     //判断目录合法性
     bool isExist = filesystem::exists(ImgPath) && filesystem::is_directory(ImgPath);

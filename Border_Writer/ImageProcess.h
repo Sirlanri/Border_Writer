@@ -10,4 +10,4 @@
 using namespace std::filesystem;
 
 //读取图像列表
-bool ReadImgs(vector<string>& ImgNames);
+bool GetImgs(vector<string>& ImgNames);
