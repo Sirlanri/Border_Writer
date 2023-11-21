@@ -25,7 +25,7 @@ int ReadFineBorder(string imgName, vector<vector<int>>& borders)
 	imgName.erase(imgName.begin() + pointIndex, imgName.end());  //截取文件名
 
     //循环 处理12个边
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 12; i++)
     {
         //得到完整的txt路径
         paths[i].append(imgName).append(".txt");
@@ -34,8 +34,8 @@ int ReadFineBorder(string imgName, vector<vector<int>>& borders)
         txtFile.open(paths[i], ios::in);
         if (txtFile.fail())
         {
-            cout << "getAreaOnTXT-读取txt文件失败: " << paths[i] << endl;
-            return false;
+            llog::error("ReadFineBorder-该图像边界文件可能不存在" + paths[i]);
+            return 0;
         }
         //存储临时变量
         vector<int> areaLine; //当前边
@@ -59,7 +59,7 @@ int ReadFineBorder(string imgName, vector<vector<int>>& borders)
     }
     if (borders.size() == 0)
     {
-        cout << "Error 未能读取边界" << endl;
+        llog::error("ReadFineBorder-未能读取边界 "+imgName);
         return 0;
     }
 
