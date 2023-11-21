@@ -6,7 +6,7 @@ bool ReadImgs(vector<string>& ImgNames)
     bool isExist = filesystem::exists(ImgPath) && filesystem::is_directory(ImgPath);
     if (!isExist)
     {
-        cout << "Warn 图像文件夹路径错误" << endl;
+        llog::error("图像文件夹路径错误");
         return false;
     }
     //文件句柄
