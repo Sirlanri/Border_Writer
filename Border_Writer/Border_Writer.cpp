@@ -32,6 +32,8 @@ int main()
 
         //所有的细边界
         vector<vector<int>> borders;
+        //当前图像Mat
+        cv::Mat img;
 
         //读取边界
         ok = ReadFineBorder(ImageNames[i], borders);
@@ -44,8 +46,15 @@ int main()
         }
 
         //读取图像
+        ok = ReadImg(ImageNames[i], img);
+        if (!ok) continue;
+        //绘制图像
+        ok = DrawFineBorders(img, borders);
+        if (!ok) continue;
+        //保存图像
+        ok = SaveImg(img, ImageNames[i]);
 
     }
 
-
+    return 1;
 }
