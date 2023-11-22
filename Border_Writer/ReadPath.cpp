@@ -1,4 +1,4 @@
-#include "ReadPath.h"
+﻿#include "ReadPath.h"
 
 int ReadFineBorder(string imgName, vector<vector<int>>& borders)
 {

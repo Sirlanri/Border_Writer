@@ -1,4 +1,4 @@
-#include "ImageProcess.h"
+﻿#include "ImageProcess.h"
 
 bool GetImgs(vector<string>& ImgNames)
 {

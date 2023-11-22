@@ -1,4 +1,4 @@
-//存放参数等信息，只能被引用
+﻿//存放参数等信息，只能被引用
 #pragma once
 #include "spdlog/spdlog.h"
 #include "opencv2/opencv.hpp"
@@ -10,7 +10,7 @@ namespace llog = spdlog;
 using namespace std;
 
 //全局信息-图像路径
-static string ImgPath = R"(a)";
+static string ImgPath = R"(E:\项目数据\轮胎\temp\)";
 
 //绘制细边界的粗细
 static int FineLineWidth = 5;
