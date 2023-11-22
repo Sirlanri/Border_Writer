@@ -22,12 +22,14 @@ int main()
     if (!ok)
     {
         //读取图像失败，程序直接退出
+        llog::error("当前目录没有图像，程序退出 "+ ImgPath);
+        system("pause");
         return 0;
     }
     
     //处理每张图
     for (int i = 0; i < ImageNames.size(); i++)
-    {
+    { 
         /*临时数据*/
 
         //所有的细边界
@@ -55,6 +57,8 @@ int main()
         ok = SaveImg(img, ImageNames[i]);
 
     }
+
+    system("pause");
 
     return 1;
 }

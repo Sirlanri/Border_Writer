@@ -15,6 +15,9 @@ bool GetImgs(vector<string>& ImgNames);
 //在图像上绘制细边界。
 bool DrawFineBorders(cv::Mat& img, const vector<vector<int>>& borders);
 
+//在图像上绘制粗边界
+bool DrawRoughBorders(cv::Mat& img);
+
 //读取图像
 bool ReadImg(string imgName, cv::Mat& img);
 
