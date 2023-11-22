@@ -20,10 +20,16 @@ static string SaveDir = R"(.\border_draw\)";
 
 //颜色
 static vector<cv::Scalar> Colors = {
-	cv::Scalar(0,0,255),       //纯红
-	cv::Scalar(0,255,0),        //纯绿
-	cv::Scalar(255,0,0),		//纯蓝
+	cv::Scalar(204,255,41),       
+	cv::Scalar(0,255,0),        
+	cv::Scalar(0,255,255),		
 	cv::Scalar(128,0,128),     //紫色
 	cv::Scalar(10,215,255), //金色
-	cv::Scalar(238,130,238)     //紫罗兰
+	cv::Scalar(238,130,238),     //紫罗兰
+	cv::Scalar(255,94,116),
+	cv::Scalar(218,254,59),
+	cv::Scalar(150,157,244),
+	cv::Scalar(252,82,79),
+	cv::Scalar(112,252,79),
+
 };
