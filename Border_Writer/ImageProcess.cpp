@@ -64,19 +64,18 @@ bool DrawFineBorders(cv::Mat& img,  const vector<vector<int>>& borders)
             //逐row扫描 绘制
             try
             {
-                img.at<cv::Vec3f>(r, borders[b][r])[0] = Colors.at(colorCount % Colors.size()).val[0];
-                colorCount++;
-                img.at<cv::Vec3f>(r, borders[b][r])[1] = Colors.at(colorCount % Colors.size()).val[1];
-                colorCount++;
-                img.at<cv::Vec3f>(r, borders[b][r])[2] = Colors.at(colorCount % Colors.size()).val[2];
-                colorCount++;
+                img.at<cv::Vec3b>(r, borders[b][r])[0] = uchar(Colors.at(colorCount % Colors.size()).val[0]);
+                img.at<cv::Vec3b>(r, borders[b][r])[1] = uchar(Colors.at(colorCount % Colors.size()).val[1]);
+                img.at<cv::Vec3b>(r, borders[b][r])[2] = uchar(Colors.at(colorCount % Colors.size()).val[2]);
+                
             }
-            catch (const std::exception&)
+            catch (const std::exception& e)
             {
-                llog::warn("DrawFineBorders- 逐row扫描绘图失败，第{}条边", b);
+                llog::warn("DrawFineBorders- 逐row扫描绘图失败，第{}条边，报错内容：{}.", b,e.what());
                 break;
             }
         }
+        colorCount++;
         
     }
     return true;
@@ -84,7 +83,7 @@ bool DrawFineBorders(cv::Mat& img,  const vector<vector<int>>& borders)
 
 bool ReadImg(string imgName, cv::Mat& img)
 {
-    cv::Mat img = cv::imread(ImgPath + imgName);
+    img = cv::imread(ImgPath + imgName);
     if (img.empty())
     {
         //读取图像失败
