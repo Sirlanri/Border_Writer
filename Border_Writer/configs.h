@@ -13,7 +13,7 @@ using namespace std;
 static string ImgPath = R"(E:\项目数据\轮胎\temp\)";
 
 //绘制细边界的粗细
-static int FineLineWidth = 5;
+static int FineLineWidth = 2;
 
 //绘制好的图像保存目录
 static string SaveDir = R"(.\border_draw\)";

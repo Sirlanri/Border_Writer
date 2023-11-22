@@ -64,9 +64,19 @@ bool DrawFineBorders(cv::Mat& img,  const vector<vector<int>>& borders)
             //逐row扫描 绘制
             try
             {
-                img.at<cv::Vec3b>(r, borders[b][r])[0] = uchar(Colors.at(colorCount % Colors.size()).val[0]);
-                img.at<cv::Vec3b>(r, borders[b][r])[1] = uchar(Colors.at(colorCount % Colors.size()).val[1]);
-                img.at<cv::Vec3b>(r, borders[b][r])[2] = uchar(Colors.at(colorCount % Colors.size()).val[2]);
+                //根据粗细，多绘制几列
+                for (int i = 0; i < FineLineWidth; i++)
+                {
+                    //判断边界溢出
+                    if (borders[b][r] + i>=img.cols)
+                    {
+                        break;
+                    }
+                    img.at<cv::Vec3b>(r, borders[b][r]+i)[0] = uchar(Colors.at(colorCount % Colors.size()).val[0]);
+                    img.at<cv::Vec3b>(r, borders[b][r]+i)[1] = uchar(Colors.at(colorCount % Colors.size()).val[1]);
+                    img.at<cv::Vec3b>(r, borders[b][r]+i)[2] = uchar(Colors.at(colorCount % Colors.size()).val[2]);
+                }
+
                 
             }
             catch (const std::exception& e)
