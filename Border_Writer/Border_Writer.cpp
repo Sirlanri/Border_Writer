@@ -54,7 +54,7 @@ int main()
         ok = DrawFineBorders(img, borders);
         if (!ok) continue;
         //保存图像
-        ok = SaveImg(img, ImageNames[i]);
+        ok = SaveImgFine(img, ImageNames[i]);
 
     }
 

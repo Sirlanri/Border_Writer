@@ -15,8 +15,8 @@ static string ImgPath = R"(.\)";
 //绘制细边界的粗细
 static int FineLineWidth = 3;
 
-//绘制好的图像保存目录
-static string SaveDir = R"(.\Fine_border_draw\)";
+//绘制好的细边界图像保存目录
+static string SaveDirFine = R"(.\Fine_border_draw\)";
 
 //颜色
 static vector<cv::Scalar> Colors = {

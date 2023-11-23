@@ -103,14 +103,14 @@ bool ReadImg(string imgName, cv::Mat& img)
     return true;
 }
 
-bool SaveImg(const cv::Mat& img,string imgName)
+bool SaveImgFine(const cv::Mat& img,string imgName)
 {
-    string fullPath = ImgPath + SaveDir;
+    string fullPath = ImgPath + SaveDirFine;
     //先确认文件夹在不在
     bool isExist = filesystem::exists(fullPath) && filesystem::is_directory(fullPath);
     if (!isExist)
     {
-        llog::info("SaveImg-保存图像 目录不存在，开始创建目录");
+        llog::info("SaveImgFine-保存图像 目录不存在，开始创建目录");
         //创建文件夹
         try
         {
@@ -119,7 +119,7 @@ bool SaveImg(const cv::Mat& img,string imgName)
         }
         catch (const std::exception&)
         {
-            llog::error("SaveImg-保存图像 目录不存在，创建目录失败");
+            llog::error("SaveImgFine-保存图像 目录不存在，创建目录失败");
             return false;
         }
     }
