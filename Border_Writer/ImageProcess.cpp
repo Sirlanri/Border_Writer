@@ -91,6 +91,60 @@ bool DrawFineBorders(cv::Mat& img,  const vector<vector<int>>& borders)
     return true;
 }
 
+bool DrawRoughBorders(cv::Mat& img, const vector<int>& borders)
+{
+    //颜色计数
+    size_t colorCount = 0;
+    //每隔pixGap个像素，空着
+    int pixGap = 20;
+    int pixCount = 0;
+
+
+    //循环处理16条边界
+    for (int b = 0; b < borders.size(); b++)
+    {
+        for (int r = 0; r < img.rows; r++)
+        {
+            pixCount++;
+            //绘制间隔
+            if (pixCount<=pixGap)
+            {
+                continue;
+            }
+
+            //根据粗细，多绘制几列
+            for (int i = 0; i < FineLineWidth; i++)
+            {
+                //判断边界溢出
+                if (borders[b] + i >= img.cols)
+                {
+                    break;
+                }
+                try
+                {
+                    //上色
+                    img.at<cv::Vec3b>(r, borders[b] + i)[0] = uchar(Colors.at(colorCount % Colors.size()).val[0]);
+                    img.at<cv::Vec3b>(r, borders[b] + i)[1] = uchar(Colors.at(colorCount % Colors.size()).val[1]);
+                    img.at<cv::Vec3b>(r, borders[b] + i)[2] = uchar(Colors.at(colorCount % Colors.size()).val[2]);
+                }
+                catch (const std::exception& e)
+                {
+                    llog::warn("DrawRoughBorders- 逐row扫描绘图失败，第{}条边，报错内容：{}.", b, e.what());
+                    return false;
+                }
+                
+            }  
+            
+            if (pixCount==2*pixGap)
+            {
+                pixCount = 0;
+            }
+        }
+        colorCount++;
+    }
+    return true;
+}
+
 bool ReadImg(string imgName, cv::Mat& img)
 {
     img = cv::imread(ImgPath + imgName);
@@ -130,3 +184,29 @@ bool SaveImgFine(const cv::Mat& img,string imgName)
     return true;
 }
 
+bool SaveImgRough16(const cv::Mat& img, string imgName)
+{
+    string fullPath = ImgPath + SaveDirRough;
+    //先确认文件夹在不在
+    bool isExist = filesystem::exists(fullPath) && filesystem::is_directory(fullPath);
+    if (!isExist)
+    {
+        llog::info("SaveImgRough-保存图像 目录不存在，开始创建目录");
+        //创建文件夹
+        try
+        {
+            create_directory(fullPath);
+
+        }
+        catch (const std::exception&)
+        {
+            llog::error("SaveImgRough-保存图像 目录不存在，创建目录失败");
+            return false;
+        }
+    }
+
+    //保存图像
+    cv::imwrite(fullPath + imgName + ".jpeg", img);
+
+    return true;
+}

@@ -10,13 +10,19 @@ namespace llog = spdlog;
 using namespace std;
 
 //全局信息-图像路径 (路径最后一定要带反斜杠 \ )
-static string ImgPath = R"(.\)";
+static string ImgPath = R"(E:\项目数据\轮胎\temp\测边界临时\)";
 
 //绘制细边界的粗细
-static int FineLineWidth = 3;
+static int FineLineWidth = 4;
+
+//绘制粗边界的粗细
+static int RoughLineWidth = 8;
 
 //绘制好的细边界图像保存目录
 static string SaveDirFine = R"(.\Fine_border_draw\)";
+
+//绘制好的粗边界图像保存目录
+static string SaveDirRough = R"(.\Rough_border_draw\)";
 
 //颜色
 static vector<cv::Scalar> Colors = {

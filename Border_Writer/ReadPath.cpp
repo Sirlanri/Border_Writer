@@ -65,3 +65,44 @@ int ReadFineBorder(string imgName, vector<vector<int>>& borders)
 
 	return 1;
 }
+
+bool ReadRoughBorder16(string imgName, vector<int>& borders)
+{
+    //16边界文件
+    string b1 = ImgPath + R"(txt_path\cufenge\)";
+    //获取无后缀的图片文件名
+    size_t pointIndex = imgName.rfind("."); //查找后缀名所在的位置下标
+    imgName.erase(imgName.begin() + pointIndex, imgName.end());  //截取文件名
+
+    //拼接txt完整路径
+    b1.append(imgName).append(".txt");
+    ifstream txtFile;
+    //读取txt文件，获取边界
+    txtFile.open(b1, ios::in);
+
+    if (txtFile.fail())
+    {
+        llog::error("ReadRoughBorder16-该图像边界文件可能不存在" + b1);
+        return 0;
+    }
+
+    int tempn;  //读取文件内容临时存放
+    //判断是数据位（否则为下标）
+    bool isdata = false;
+    int index = 0;
+    //循环读取当前文件，直至结束
+    while (!txtFile.eof())
+    {
+        txtFile >> tempn;
+        if (isdata)
+        {
+            borders.push_back(tempn);
+            index++;
+        }
+        isdata = !isdata;
+    }
+    txtFile.close();
+
+
+    return true;
+}
