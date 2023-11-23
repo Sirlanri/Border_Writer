@@ -113,7 +113,7 @@ bool DrawRoughBorders(cv::Mat& img, const vector<int>& borders)
             }
 
             //根据粗细，多绘制几列
-            for (int i = 0; i < FineLineWidth; i++)
+            for (int i = 0; i < RoughLineWidth; i++)
             {
                 //判断边界溢出
                 if (borders[b] + i >= img.cols)

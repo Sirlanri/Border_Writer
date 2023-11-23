@@ -16,7 +16,7 @@ static string ImgPath = R"(E:\项目数据\轮胎\temp\测边界临时\)";
 static int FineLineWidth = 4;
 
 //绘制粗边界的粗细
-static int RoughLineWidth = 8;
+static int RoughLineWidth = 6;
 
 //绘制好的细边界图像保存目录
 static string SaveDirFine = R"(.\Fine_border_draw\)";

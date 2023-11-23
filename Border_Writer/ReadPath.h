@@ -15,3 +15,5 @@ int ReadFineBorder(string imgName, vector<vector<int>>& borders);
 //传入图像名称，返回16粗边界数组
 bool ReadRoughBorder16(string imgName, vector<int>& borders);
 
+//传入图像名称，返回带束层8边界
+bool ReadRoughBorderTread(string imgName, vector<int>& borders);

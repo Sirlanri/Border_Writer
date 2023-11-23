@@ -36,10 +36,12 @@ int main()
         vector<vector<int>> fineBorders;
         //16粗边界
         vector<int> roughBorders16;
+        //带束层粗边界
+        vector<int> roughBorderTread;
         //当前图像Mat
         cv::Mat img;
 
-        //读取边界
+        //读取细边界
         ok = ReadFineBorder(ImageNames[i], fineBorders);
         if (!ok)
         {
@@ -48,7 +50,19 @@ int main()
             //停止处理此图形
             continue;
         }
+
+        //读取16粗边界
         ok = ReadRoughBorder16(ImageNames[i], roughBorders16);
+        if (!ok)
+        {
+            //当前图像读取txt失败，从列表中删除此图像
+            ImageNames.erase(ImageNames.begin() + i);
+            //停止处理此图形
+            continue;
+        }
+
+        //读取带束层粗边界
+        ok = ReadRoughBorderTread(ImageNames[i], roughBorderTread);
         if (!ok)
         {
             //当前图像读取txt失败，从列表中删除此图像
@@ -61,19 +75,22 @@ int main()
         ok = ReadImg(ImageNames[i], img);
         if (!ok) continue;
 
-        //16粗边界图像
-        cv::Mat imgRough16 = img.clone();
+        //16粗边界图像和带束层粗边界
+        cv::Mat imgRough = img.clone();
 
         //绘制图像细边界
         ok = DrawFineBorders(img, fineBorders);
         if (!ok) continue;
-        ok = DrawRoughBorders(imgRough16, roughBorders16);
+        //绘制16粗边界
+        ok = DrawRoughBorders(imgRough, roughBorders16);
+        if (!ok) continue;
+        ok = DrawRoughBorders(imgRough, roughBorderTread);
         if (!ok) continue;
 
         //保存图像
         ok = SaveImgFine(img, ImageNames[i]);
         if (!ok) continue;
-        ok = SaveImgRough16(imgRough16, ImageNames[i]);
+        ok = SaveImgRough16(imgRough, ImageNames[i]);
 
     }
 
