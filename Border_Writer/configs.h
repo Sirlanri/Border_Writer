@@ -10,7 +10,7 @@ namespace llog = spdlog;
 using namespace std;
 
 //全局信息-图像路径 (路径最后一定要带反斜杠 \ )
-static string ImgPath = R"(E:\项目数据\轮胎\temp\测边界临时\)";
+static string ImgPath = R"(.\)";
 
 //绘制细边界的粗细
 static int FineLineWidth = 4;
