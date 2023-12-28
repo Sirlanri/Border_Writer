@@ -171,9 +171,9 @@ bool SaveImgFine(const cv::Mat& img,string imgName)
             create_directory(fullPath);
 
         }
-        catch (const std::exception&)
+        catch (const std::exception& e)
         {
-            llog::error("SaveImgFine-保存图像 目录不存在，创建目录失败");
+            llog::error("SaveImgFine-保存图像 目录不存在，创建目录失败 ",e.what());
             return false;
         }
     }
@@ -198,9 +198,9 @@ bool SaveImgRough16(const cv::Mat& img, string imgName)
             create_directory(fullPath);
 
         }
-        catch (const std::exception&)
+        catch (const std::exception&e )
         {
-            llog::error("SaveImgRough-保存图像 目录不存在，创建目录失败");
+            llog::error("SaveImgRough-保存图像 目录不存在，创建目录失败",e.what());
             return false;
         }
     }
